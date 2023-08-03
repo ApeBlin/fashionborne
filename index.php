@@ -6,9 +6,21 @@ $qry = "select id, first_name, last_name from customers";
 $rs = $dbConn->query($qry);
 $fetchAllData = $rs->fetch_all(MYSQLI_ASSOC);
 
-$qry2 = "select id, name from Chest";
-$rs2 = $dbConn->query($qry2); // Fetch data for the second dropdown (Chest)
-$fetchChestData = $rs2->fetch_all(MYSQLI_ASSOC);
+$qryHead = "select id, name from Head";
+$rsHead = $dbConn->query($qryHead); // Fetch data for the dropdown (Head)
+$fetchHeadData = $rsHead->fetch_all(MYSQLI_ASSOC);
+
+$qryChest = "select id, name from Chest";
+$rsChest = $dbConn->query($qryChest); // Fetch data for the dropdown (Chest)
+$fetchChestData = $rsChest->fetch_all(MYSQLI_ASSOC);
+
+$qryHands = "select id, name from Hands";
+$rsHands = $dbConn->query($qryHands); // Fetch data for the dropdown (Hands)
+$fetchHandsData = $rsHands->fetch_all(MYSQLI_ASSOC);
+
+$qryLegs = "select id, name from Legs";
+$rsLegs = $dbConn->query($qryLegs); // Fetch data for the dropdown (Legs)
+$fetchLegsData = $rsLegs->fetch_all(MYSQLI_ASSOC);
 ?>
 
 <!DOCTYPE html>
@@ -59,7 +71,10 @@ table td{
 }
 
 #customer-data{
-	margin-top:10px;
+	position: absolute;
+}
+#chest-data{
+	position: absolute;
 }
 
 #customer-list{
@@ -73,10 +88,10 @@ table td{
 
 <div class="container">
 	<!--<h1>Jquery Ajax Dropdown (onchange) Example in PHP</h1>-->
-	<h1>Customer Info Search</h1>
+	<h1>Fashionborne</h1>
 	
 	<div>
-		<label>Select Customer</label>
+		<label>test</label>
 		<select id="customer-list">
 			<option value=""> ----</option>
 			<?php
@@ -88,23 +103,49 @@ table td{
 			} 
 			?>
 		</select>
+		<label>Head</label>
+		<select id="head-list">
+			<option value=""> ----</option>
+			<?php
+			foreach($fetchHeadData as $headData)
+			{
+				echo '<option value = "'.$headData['id'].'">'.$headData['name'].'</option>';			} 
+			?>
+		</select>
 		<br>
 		<label>Chest</label>
-		<select id="customer-list">
+		<select id="chest-list">
 			<option value=""> ----</option>
 			<?php
 			foreach($fetchChestData as $chestData)
 			{
-				$chestID = $chestData['id'];
-				$createFullName = $customerData['first_name']." ".$customerData['last_name'];
-				echo '<option value = "'.$chestID.'">'.$chestData['name'].'</option>';			} 
+				echo '<option value = "'.$chestData['id'].'">'.$chestData['name'].'</option>';			} 
 			?>
 		</select>
+		<label>Hands</label>
+		<select id="hands-list">
+			<option value=""> ----</option>
+			<?php
+			foreach($fetchHandsData as $handsData)
+			{
+				echo '<option value = "'.$handsData['id'].'">'.$handsData['name'].'</option>';			} 
+			?>
+		</select>
+		<label>Legs</label>
+		<select id="legs-list">
+			<option value=""> ----</option>
+			<?php
+			foreach($fetchLegsData as $legsData)
+			{
+				echo '<option value = "'.$legsData['id'].'">'.$legsData['name'].'</option>';			} 
+			?>
 	</div>
 	
 	<img src="img/ajax-loader.gif" id="loader">
 	
 	<div id="customer-data">
+	</div>
+	<div id="chest-data">
 	</div>
 </div>
 
@@ -135,6 +176,34 @@ table td{
 				else
 				{
 					$("#customer-data").html('');
+					$("#loader").hide();
+				}
+		});
+		
+	});
+	$(document).ready(function(){
+		
+		$("#chest-list").change(function(){
+				
+				$("#loader").show();
+				
+				var getUserID = $(this).val();
+				
+				if(getUserID != '0')
+				{
+					$.ajax({
+						type: 'GET',
+						url: 'getChest.php',
+						data: {chest_id:getUserID},
+						success: function(data){
+							$("#loader").hide();
+							$("#chest-data").html(data);
+						}
+					});
+				}
+				else
+				{
+					$("#chest-data").html('');
 					$("#loader").hide();
 				}
 		});

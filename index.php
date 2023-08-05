@@ -28,40 +28,37 @@ $fetchLegsData = $rsLegs->fetch_all(MYSQLI_ASSOC);
 <head>
 <style>
 
+#topSwag {
+  position:relative;
+  left: ;
+  top: 31px;
+  width: 744px;
+  height: 81px;
+}
+
 body{
+	position: inherit;
 	font-family:verdana;
 	font-size:14px;
-	background:#d6c173;
+	background-image: url(assets/right.png);
+	background-repeat: no-repeat;
+    background-size: cover;
 }
 
 .container{
-	width:1120px;
+	width:1300px;
 	margin:0 auto;
-	border:1px solid #eeeeee;
-	background:#ffffff;
 	padding:10px;
+	color:#ffffff;
+}
+.dropdown-box{
+	margin-top: 100px;
+	position: relative;
 }
 
 h1{
 	text-align:center;
 	color:#c04e22;
-	
-}
-table{
-	border:1px solid #eeeeee;
-	border-collapse: collapse;
-	width:100%;
-}
-
-table th{
-	border:1px solid #eeeeee;
-	text-align:center;
-	color:#c04e22;
-	height:40px;
-}
-table td{
-	border:1px solid #eeeeee;
-	padding:5px;
 	
 }
 
@@ -81,16 +78,39 @@ table td{
 	height:30px;
 	width:250px;
 }
+#head-list{
+	height:25px;
+	width:200px;
+	margin-left: 26px;
+	margin-bottom: 5px;
+}
+#chest-list{
+	height:25px;
+	width:200px;
+	margin-left: 23px;
+	margin-bottom: 5px;
+}
+#hands-list{
+	height:25px;
+	width:200px;
+	margin-left: 18px;
+	margin-bottom: 5px;
+}
+#legs-list{
+	height:25px;
+	width:200px;
+	margin-left: 30px;
+	margin-bottom: 5px;
+}
 
 </style>
 </head>
 <body>
-
+	
 <div class="container">
 	<!--<h1>Jquery Ajax Dropdown (onchange) Example in PHP</h1>-->
-	<h1>Fashionborne</h1>
-	
-	<div>
+	<img id="topSwag" src="assets/topSwag.png">	
+	<div class="dropdown-box">
 		<label>test</label>
 		<select id="customer-list">
 			<option value=""> ----</option>
@@ -103,13 +123,15 @@ table td{
 			} 
 			?>
 		</select>
+		<br>
 		<label>Head</label>
 		<select id="head-list">
 			<option value=""> ----</option>
 			<?php
 			foreach($fetchHeadData as $headData)
 			{
-				echo '<option value = "'.$headData['id'].'">'.$headData['name'].'</option>';			} 
+				echo '<option value = "'.$headData['id'].'">'.$headData['name'].'</option>';
+			} 
 			?>
 		</select>
 		<br>
@@ -122,6 +144,7 @@ table td{
 				echo '<option value = "'.$chestData['id'].'">'.$chestData['name'].'</option>';			} 
 			?>
 		</select>
+		<br>
 		<label>Hands</label>
 		<select id="hands-list">
 			<option value=""> ----</option>
@@ -131,6 +154,7 @@ table td{
 				echo '<option value = "'.$handsData['id'].'">'.$handsData['name'].'</option>';			} 
 			?>
 		</select>
+		<br>
 		<label>Legs</label>
 		<select id="legs-list">
 			<option value=""> ----</option>
@@ -139,6 +163,7 @@ table td{
 			{
 				echo '<option value = "'.$legsData['id'].'">'.$legsData['name'].'</option>';			} 
 			?>
+		</select>
 	</div>
 	
 	<img src="img/ajax-loader.gif" id="loader">
@@ -151,6 +176,24 @@ table td{
 
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script>
+	document.addEventListener("DOMContentLoaded", function() {
+    // Get the dropdown element by its ID
+    var customerDropdown = document.getElementById("customer-list");
+	var headDropdown = document.getElementById("head-list");
+    var chestDropdown = document.getElementById("chest-list");
+    var handsDropdown = document.getElementById("hands-list");
+    var legsDropdown = document.getElementById("legs-list");
+
+    
+    // Reset the dropdown selection to the default option (index 0)
+    customerDropdown.selectedIndex = 0;
+	headDropdown.selectedIndex = 0;
+	chestDropdown.selectedIndex = 0;
+	handsDropdown.selectedIndex = 0;
+	legsDropdown.selectedIndex = 0;
+});
+</script>
 
 <script>
 	$(document).ready(function(){

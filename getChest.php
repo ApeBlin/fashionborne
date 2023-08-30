@@ -11,7 +11,7 @@ if(isset($_GET['chest_id']) && is_numeric($_GET['chest_id']))
 
 	$fetchChestData = $rs->fetch_ALL(MYSQLI_ASSOC);
 	foreach ($fetchChestData as $chestData) {
-		echo $chestData['name'] .'<br>';
+		echo $chestData['name'];
 	}
 
 

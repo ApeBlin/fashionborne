@@ -70,9 +70,19 @@ h1{
 #customer-data{
 	position: absolute;
 }
+#head-data{
+	position: absolute;
+}
 #chest-data{
 	position: absolute;
 }
+#hands-data{
+	position: absolute;
+}
+#legs-data{
+	position: absolute;
+}
+
 
 #customer-list{
 	height:30px;
@@ -170,8 +180,15 @@ h1{
 	
 	<div id="customer-data">
 	</div>
+	<div id="head-data">
+	</div>
 	<div id="chest-data">
 	</div>
+	<div id="hands-data">
+	</div>
+	<div id="legs-data">
+	</div>
+
 </div>
 
 
@@ -226,6 +243,34 @@ h1{
 	});
 	$(document).ready(function(){
 		
+		$("#head-list").change(function(){
+				
+				$("#loader").show();
+				
+				var getUserID = $(this).val();
+				
+				if(getUserID != '0')
+				{
+					$.ajax({
+						type: 'GET',
+						url: 'getHead.php',
+						data: {head_id:getUserID},
+						success: function(data){
+							$("#loader").hide();
+							$("#head-data").html(data);
+						}
+					});
+				}
+				else
+				{
+					$("#head-data").html('');
+					$("#loader").hide();
+				}
+		});
+		
+	});
+	$(document).ready(function(){
+		
 		$("#chest-list").change(function(){
 				
 				$("#loader").show();
@@ -247,6 +292,62 @@ h1{
 				else
 				{
 					$("#chest-data").html('');
+					$("#loader").hide();
+				}
+		});
+		
+	});
+	$(document).ready(function(){
+		
+		$("#hands-list").change(function(){
+				
+				$("#loader").show();
+				
+				var getUserID = $(this).val();
+				
+				if(getUserID != '0')
+				{
+					$.ajax({
+						type: 'GET',
+						url: 'getHands.php',
+						data: {hands_id:getUserID},
+						success: function(data){
+							$("#loader").hide();
+							$("#hands-data").html(data);
+						}
+					});
+				}
+				else
+				{
+					$("#hands-data").html('');
+					$("#loader").hide();
+				}
+		});
+		
+	});
+	$(document).ready(function(){
+		
+		$("#legs-list").change(function(){
+				
+				$("#loader").show();
+				
+				var getUserID = $(this).val();
+				
+				if(getUserID != '0')
+				{
+					$.ajax({
+						type: 'GET',
+						url: 'getLegs.php',
+						data: {legs_id:getUserID},
+						success: function(data){
+							$("#loader").hide();
+							$("#legs-data").html(data);
+						}
+					});
+				}
+				else
+				{
+					$("#legs-data").html('');
 					$("#loader").hide();
 				}
 		});

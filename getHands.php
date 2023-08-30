@@ -1,19 +1,19 @@
 <?php 
 require_once('config.php');
 
-if(isset($_GET['chest_id']) && is_numeric($_GET['chest_id']))
+if(isset($_GET['hands_id']) && is_numeric($_GET['hands_id']))
 {
-	$userID = intval($_GET['chest_id']);
+	$userID = intval($_GET['hands_id']);
 	
-	$qry = "select name, layer from Chest where id = ".$userID;
+	$qry = "select name, layer from Hands where id = ".$userID;
 
 	$rs = $dbConn->query($qry);
 
-	$fetchChestData = $rs->fetch_ALL(MYSQLI_ASSOC);
-	foreach ($fetchChestData as $chestData) {
+	$fetchHandsData = $rs->fetch_ALL(MYSQLI_ASSOC);
+	foreach ($fetchHandsData as $handsData) {
+		echo $handsData['name'];
 	}
 
-    echo $chestData['name'] .'<br>';
 
 	$rs->close();
 

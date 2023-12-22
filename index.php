@@ -28,15 +28,54 @@ $fetchLegsData = $rsLegs->fetch_all(MYSQLI_ASSOC);
 <head>
 <style>
 
+.wrapper {
+  display: flex;  
+  flex-flow: row wrap;
+  font-weight: bold;
+  text-align: center; 
+  color: white;
+}
+
+.wrapper > * {
+  padding: 10px;
+  flex: 1 100%;
+}
+.header{
+padding-bottom:4em;
+}
+.main {
+	position: inherit;
+	width: 400px;
+}
+
+.aside-1 {
+background-repeat: no-repeat;
+background-size: cover;
+}
+
+.aside-2 {
+}
+
+@media all and (min-width: 600px) {
+  .aside { flex: 1 0 0; }
+}
+
+@media all and (min-width: 800px) {
+  .main    { flex: 0 auto; }
+  .aside-1 { order: 1; } 
+  .main    { order: 2; }
+  .aside-2 { order: 3; }
+  .footer  { order: 4; }
+}
+
 #topSwag {
   position:relative;
-  left: ;
-  top: 31px;
-  width: 744px;
-  height: 81px;
+  width: 60rem;
+  flex-shrink: 2;
 }
 
 body{
+	padding: 2em;
 	position: inherit;
 	font-family:verdana;
 	font-size:14px;
@@ -68,18 +107,23 @@ h1{
 }
 
 #customer-data{
+	display: grid;
 	position: absolute;
 }
 #head-data{
+	display: grid;
 	position: absolute;
 }
 #chest-data{
+	display: grid;
 	position: absolute;
 }
 #hands-data{
+	display: grid;
 	position: absolute;
 }
 #legs-data{
+	display: grid;
 	position: absolute;
 }
 
@@ -117,23 +161,10 @@ h1{
 </head>
 <body>
 	
-<div class="container">
+<div class="wrapper">
 	<!--<h1>Jquery Ajax Dropdown (onchange) Example in PHP</h1>-->
-	<img id="topSwag" src="assets/topSwag.png">	
-	<div class="dropdown-box">
-		<label>test</label>
-		<select id="customer-list">
-			<option value=""> ----</option>
-			<?php
-			foreach($fetchAllData as $customerData)
-			{
-				$customerID = $customerData['id'];
-				$createFullName = $customerData['first_name']." ".$customerData['last_name'];
-				echo '<option value = "'.$customerID.'">'.$createFullName.'</option>';
-			} 
-			?>
-		</select>
-		<br>
+	<header class="header"> <img id="topSwag" src="assets/topSwag.png"> </header>
+	<aside class="aside aside-1">
 		<label>Head</label>
 		<select id="head-list">
 			<option value=""> ----</option>
@@ -174,21 +205,22 @@ h1{
 				echo '<option value = "'.$legsData['id'].'">'.$legsData['name'].'</option>';			} 
 			?>
 		</select>
-	</div>
+	</aside>
 	
 	<img src="img/ajax-loader.gif" id="loader">
-	
-	<div id="customer-data">
+	<div class="main">
+		<div id="customer-data"> <img src="assets/nude.png">
+		</div>
+			<div id="head-data">
+			</div>
+			<div id="chest-data">
+			</div>
+			<div id="hands-data">
+			</div>
+			<div id="legs-data">
+		</div>
 	</div>
-	<div id="head-data">
-	</div>
-	<div id="chest-data">
-	</div>
-	<div id="hands-data">
-	</div>
-	<div id="legs-data">
-	</div>
-
+	<aside class="aside aside-2">This is where I put big boi to do texts</aside>
 </div>
 
 

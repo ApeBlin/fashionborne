@@ -11,7 +11,9 @@ if(isset($_GET['chest_id']) && is_numeric($_GET['chest_id']))
 
 	$fetchChestData = $rs->fetch_ALL(MYSQLI_ASSOC);
 	foreach ($fetchChestData as $chestData) {
+        $image = '<img src="' . $chestData['img'] . '" style="z-index: ' . $chestData['layer'] . ';">';
 		echo $chestData['name'];
+		echo $image;
 	}
 	$rs->close();
 	$dbConn->close();

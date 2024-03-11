@@ -44,8 +44,8 @@ $fetchLegsData = $rsLegs->fetch_all(MYSQLI_ASSOC);
 padding-bottom:4em;
 }
 .main {
-	position: inherit;
-	width: 400px;
+	position: ;
+	width: 573px; 
 }
 
 .aside-1 {
@@ -56,16 +56,22 @@ background-size: cover;
 .aside-2 {
 }
 
-@media all and (min-width: 600px) {
-  .aside { flex: 1 0 0; }
-}
-
-@media all and (min-width: 800px) {
+/* Default styles for larger screens */
+@media all and (max-width: 1200px) {
   .main    { flex: 0 auto; }
   .aside-1 { order: 1; } 
   .main    { order: 2; }
   .aside-2 { order: 3; }
   .footer  { order: 4; }
+}
+
+/* Styles for smaller screens */
+@media all and (min-width: 1199px) {
+  /* Reset the order property to its default */
+  .main, .aside-1, .aside-2, .footer  { order: initial; }
+
+  /* Allow all items to grow and shrink as needed */
+  .main, .aside-1, .aside-2, .footer  { flex: 1; }
 }
 
 #topSwag {
@@ -207,22 +213,16 @@ h1{
 		</select>
 	</aside>
 	
-	<img src="img/ajax-loader.gif" id="loader">
+	<!--<img src="img/ajax-loader.gif" id="loader"> !-->
 	<div class="main">
-		<div id="customer-data"> <img src="assets/nude.png">
-		</div>
-			<div id="head-data">
-			</div>
-			<div id="chest-data">
-			</div>
-			<div id="hands-data">
-			</div>
-			<div id="legs-data">
-		</div>
+		<!--<div id="customer-data"> <img src="assets/nude.png"></div>-->
+		<div id="head-data"></div>
+		<div id="chest-data"></div>
+		<div id="hands-data"></div>
+		<div id="legs-data"></div>
 	</div>
 	<aside class="aside aside-2">This is where I put big boi to do texts</aside>
 </div>
-
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script>

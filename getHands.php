@@ -12,7 +12,7 @@ if(isset($_GET['hands_id']) && is_numeric($_GET['hands_id']))
 	$fetchHandsData = $rs->fetch_ALL(MYSQLI_ASSOC);
 	foreach ($fetchHandsData as $handsData) {
         $image = '<img src="' . $handsData['img'] . '" style="z-index: ' . $handsData['layer'] . ';">';
-		echo $handsData['name'];
+	//	echo $handsData['name'];
 		echo $image;
 	}
 

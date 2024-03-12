@@ -16,18 +16,6 @@ if(isset($_GET['chest_id']) && is_numeric($_GET['chest_id']))
 		echo $image;
 	}
 	$rs->close();
-	$dbConn->close();
-
-	// Use this code to display the image and also use the layer data on the z-index. !!NOT TESTED!!
-	// $fetchChestData = $rs->fetch_all(MYSQLI_ASSOC);
-    // foreach ($fetchChestData as $chestData) {
-    //     $imgUrl = $chestData['img'];
-    //     $layer = $chestData['layer'];
-
-    //     // Use inline CSS to set the z-index property based on the layer data
-    //     echo '<img src="' . $imgUrl . '" alt="" style="z-index: ' . $layer . ';">';
-    // }
-    // $rs->close();
-    // $dbConn->close();	
+	$dbConn->close();	
 }
 ?>

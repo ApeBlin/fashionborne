@@ -2,11 +2,6 @@
 <?php
 require_once('config.php');
 
-// Fetch customer data
-$qryCustomers = "SELECT id, first_name, last_name FROM customers";
-$rsCustomers = $dbConn->query($qryCustomers);
-$fetchCustomerData = $rsCustomers->fetch_all(MYSQLI_ASSOC);
-
 // Fetch dropdown data (Head, Chest, Hands, Legs)
 $tables = ['Head', 'Chest', 'Hands', 'Legs'];
 $fetchDropdownData = [];
@@ -35,11 +30,13 @@ foreach ($tables as $table) {
 
 <div class="w3-center">
     <div class="w3-container w3-theme">
-        <div class="w3-row">
+        <div class="w3-row">  
+            <!-- Dropdowns for Head, Chest, Hands, and Legs -->
             <div class="w3-half w3-container" style="margin-top: 3em;">
                 <label>Head</label>
                 <select id="head-list">
-                    <option value="">----</option>
+                    <option value="">----</option>        
+                    <!-- Loop through fetched Head data to populate dropdown options -->
                     <?php foreach ($fetchDropdownData['Head'] as $headData): ?>
                         <option value="<?= $headData['id'] ?>"><?= $headData['name'] ?></option>
                     <?php endforeach; ?>
@@ -87,10 +84,9 @@ foreach ($tables as $table) {
         $('#head-list, #chest-list, #hands-list, #legs-list').prop('selectedIndex', 0);
 
 });
-
 $(document).ready(function () {
     // Function to handle AJAX requests
-    function handleAjaxRequest(elementId, phpScript) {
+    function handleAjaxRequest(elementId, phpScript, type) {
         $("#" + elementId).change(function () {
             $("#loader").show();
             var getUserID = $(this).val();
@@ -98,7 +94,10 @@ $(document).ready(function () {
                 $.ajax({
                     type: 'GET',
                     url: phpScript,
-                    data: {[elementId.replace('-list', '_id')]: getUserID},
+                    data: {
+                        item_id: getUserID,
+                        type: type
+                    },
                     success: function (data) {
                         $("#" + elementId.replace('-list', '-data')).html(data);
                         $("#loader").hide();
@@ -111,13 +110,13 @@ $(document).ready(function () {
         });
     }
 
-    // Call the handleAjaxRequest function for each dropdown
-    handleAjaxRequest("customer-list", "ajax.php");
-    handleAjaxRequest("head-list", "getHead.php");
-    handleAjaxRequest("chest-list", "getChest.php");
-    handleAjaxRequest("hands-list", "getHands.php");
-    handleAjaxRequest("legs-list", "getLegs.php");
+    // Call the handleAjaxRequest function for each dropdown except customer
+    handleAjaxRequest("head-list", "getData.php", "head");
+    handleAjaxRequest("chest-list", "getData.php", "chest");
+    handleAjaxRequest("hands-list", "getData.php", "hands");
+    handleAjaxRequest("legs-list", "getData.php", "legs");
 });
+
 </script>
 </body>
 </html>

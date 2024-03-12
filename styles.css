@@ -1,0 +1,59 @@
+
+
+#loader{
+	display:none;
+	margin-top:10px;
+}
+
+#customer-data{
+	display: grid;
+	position: absolute;
+}
+#head-data{
+	display: grid;
+	position: absolute;
+}
+#chest-data{
+	display: grid;
+	position: absolute;
+}
+#hands-data{
+	display: grid;
+	position: absolute;
+}
+#legs-data{
+	display: grid;
+	position: absolute;
+}
+#head-list{
+	height:25px;
+	width:200px;
+	margin-left: 26px;
+	margin-bottom: 5px;
+}
+#chest-list{
+	height:25px;
+	width:200px;
+	margin-left: 23px;
+	margin-bottom: 5px;
+}
+#hands-list{
+	height:25px;
+	width:200px;
+	margin-left: 18px;
+	margin-bottom: 5px;
+}
+#legs-list{
+	height:25px;
+	width:200px;
+	margin-left: 30px;
+	margin-bottom: 5px;
+}
+.header {
+	animation: opac 1.5s;
+    background-image: url('assets/topSwag.png');
+	background-repeat: no-repeat; 
+    background-size: contain; 
+    background-position: center; 
+    height: 100px; 
+}

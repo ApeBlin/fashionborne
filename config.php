@@ -11,4 +11,5 @@ if($dbConn->connect_error)
 {
 	die("Database Connection Error, Error No.: ".$dbConn->connect_errno." | ".$dbConn->connect_error);
 }
+
 ?>
